@@ -57,9 +57,9 @@ public class Student{
     public String getGpa() {
         return gpa;
     }
-    // public String setGpa(String gpa) {
-    //     this.gpa = gpa;
-    // }
+    public void setGpa(String gpa) {
+        this.gpa = gpa;
+    }
     public String getMajor() {
         return major;
     }

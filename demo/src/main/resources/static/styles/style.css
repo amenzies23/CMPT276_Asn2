@@ -7,6 +7,10 @@
     margin-top: 50px;
 }
 
+#student-div{
+    background-color: rgb(214, 214, 214);
+}
+
 .square-button {
     width: 100%; /* Ensures the button width is as wide as its container */
     border-radius: 10px; /* Optional: Adds rounded corners to the buttons */
@@ -30,29 +34,18 @@
     }
 }
 
-.student-info {
-    cursor: pointer;
-    margin-bottom: 10px;
-}
-
 .student-name {
-    background-color: #007bff; /* Bootstrap primary color */
-    color: white;
-    padding: 10px;
-    margin-bottom: 5px;
-    border-radius: 5px;
-    text-align: center;
+    border: 2px solid #000; /* Black border */
+    margin: 10px 0; /* Adds space above and below each name */
+    padding: 20px; /* Adds space inside the border */
+    font-size: 24px; /* Larger text */
+    background-color: #f8f9fa; /* Light background color */
+    cursor: pointer; /* Changes cursor to pointer on hover */
+    width: 100%; /* Full width */
+    box-sizing: border-box; /* Ensures padding does not affect the total width */
 }
 
+/* Add styles for hover effect if desired */
 .student-name:hover {
-    background-color: #0056b3; /* Darker shade for hover effect */
-}
-
-.student-details {
-    display: none;
-    padding: 10px;
-    background-color: #f8f9fa; /* Light background for the details */
-    border: 1px solid #ddd; /* Light border */
-    border-radius: 5px;
-    text-align: center;
+    background-color: #e2e6ea; /* Slightly darker background on hover */
 }
