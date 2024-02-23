@@ -19,8 +19,7 @@ async function toggleModal(studentId) {
                 <p>GPA: ${student.gpa}</p>
                 <p>Height: ${student.height}</p>
                 <p>Weight: ${student.weight}</p>
-                <p>Hair Color: ${student.hair_color}</p>
-            `;
+                <p>Hair Color: ${student.hair_color}</p>`;
             // Show the modal
             new bootstrap.Modal(document.getElementById('studentDetailsModal')).show();
             const deleteButton = document.getElementById('dlt-btn');
@@ -33,8 +32,6 @@ async function toggleModal(studentId) {
             editButton.addEventListener('click', function() {
                 window.location.href = `/students/${studentId}/edit`;
             });
-
-            
         } else {
             console.error('Student details not found:', response.status);
         }
@@ -42,25 +39,3 @@ async function toggleModal(studentId) {
         console.error('Error fetching student details:', error);
     }
 }
-
-document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('addStudent').addEventListener('click', function() {
-        // Implement Add functionality
-        window.location.href = '/students/add';
-    });
-
-    document.getElementById('viewStudents').addEventListener('click', function() {
-        // Implement View functionality
-        window.location.href = '/students/view';
-    });
-
-    document.getElementById('modifyStudent').addEventListener('click', function() {
-        // Implement Modify functionality
-        window.location.href = '/students/view';
-    });
-
-    document.getElementById('deleteStudent').addEventListener('click', function() {
-        // Implement Delete functionality
-        window.location.href = '/students/delete';
-    });
-});
