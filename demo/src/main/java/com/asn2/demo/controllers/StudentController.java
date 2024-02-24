@@ -30,6 +30,7 @@ public class StudentController {
     @Autowired
     private StudentRepository studentRepo;
 
+    //GET mapping to show the full list of students
     @GetMapping("/students/view")
     public String getAllStudents(Model model) {
         List<Student> students = studentRepo.findAll();
@@ -37,11 +38,7 @@ public class StudentController {
         return "students/showAll";
     }
 
-    @GetMapping("/students/add")
-    public String addStudentForm() {
-        return "students/add";
-    }
-
+    //GET mapping to return the info about a student based on their id (used for modal)
     @GetMapping("/students/{id}")
     public ResponseEntity<Student> getStudentById(@PathVariable Integer id) {
 
@@ -50,11 +47,13 @@ public class StudentController {
                   .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
+    //GET mapping to show the deletedStudent page
     @GetMapping("/students/deletedStudent")
     public String showDeletedStudentPage() {
-        return "deletedStudent"; // Refers to 'deletedStudent.html' in your 'src/main/resources/templates' directory
+        return "deletedStudent";
     }
-
+    //GET mapping to show the edit page for a student
+    //This page will display all the info about the student, and the form on the edit page will invoke the next POST mapping
     @GetMapping("/students/{id}/edit")
     public String showEditStudentForm(@PathVariable("id") Integer id, Model model) {
     System.out.println("Fetching student for edit with ID: " + id);
@@ -64,12 +63,12 @@ public class StudentController {
     // Add the student to the model to pre-populate the form
     model.addAttribute("student", student);
     // Open the students/edit page
-    return "students/edit";  // This should match the name of your Thymeleaf template
+    return "students/edit";
 }
 
+    //After the edit form is invoked, this POST mapping will be invoked to post the updated student info
     @PostMapping("/students/{id}/update")
     public String updateStudent(@PathVariable("id") Integer id, @RequestParam Map<String, String> updatedStudent, RedirectAttributes redirectAttributes) {
-    System.out.println("Update student with ID: " + id);
     
     // Fetch the existing student from the database
     Student student = studentRepo.findById(id)
@@ -85,17 +84,18 @@ public class StudentController {
 
     // Save the updated student back to the database
     studentRepo.save(student);
-
-    // Use RedirectAttributes to add flash attributes (if needed)
-    redirectAttributes.addFlashAttribute("successMessage", "Student updated successfully!");
-
-    // Redirect to a confirmation page or back to the student list
     return "students/editedStudent";
 }
 
+    //GET mapping for displaying the "add" page, this page will invoke the next POST mapping
+    @GetMapping("/students/add")
+    public String addStudentForm() {
+        return "students/add";
+    }
+
+    //POST mapping to be invoked when the add page is submitted
     @PostMapping("/students/add")
     public String addStudent(@RequestParam Map<String, String> newstudent, HttpServletResponse response){
-        System.out.println("ADD student");
         String newName = newstudent.get("name");
         String newMajor = newstudent.get("major");
         String newGPA = newstudent.get("gpa");
@@ -107,10 +107,10 @@ public class StudentController {
         return "students/addedStudent";
     }
     
+    //Delete mapping to delete a student by their id
     @DeleteMapping("/students/{id}/delete")
     public String deleteUser(@PathVariable("id") String id) { 
-        studentRepo.deleteById(Integer.parseInt(id));
-        // Delete the user in this method with the id.  
+        studentRepo.deleteById(Integer.parseInt(id));  
         return "students/deletedStudent";
  }
     

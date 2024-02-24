@@ -19,21 +19,6 @@
     margin: 0 auto; /* Centers the button text */
 }
 
-/* Ensure the buttons don't become too large on bigger screens */
-@media (min-width: 992px) {
-    .square-button {
-        padding: 50px 0; /* Adjusts padding for larger screens to maintain square shape */
-    }
-}
-
-/* Adjust grid layout for smaller screens */
-@media (max-width: 576px) {
-    .col-6 {
-        flex: 0 0 100%;
-        max-width: 100%;
-    }
-}
-
 .student-name {
     border: 2px solid #000; /* Black border */
     margin: 10px 0; /* Adds space above and below each name */

@@ -19,11 +19,13 @@
                 </h1>
                 <!-- Student list -->
                 <div th:each="student : ${st}" class="mb-3">
+                    <!-- The next div is the main container for each student. This will be modified with a bunch of th:style elements to change
+                    depending on various attributes of the student -->
                     <div id="student-div"class="student-name text-center justify-content-center" data-bs-toggle="modal" data-bs-target="#studentDetailsModal"
                          th:onclick="'toggleModal(' + ${student.id} + ');'" th:text="${student.name}" 
                          th:style="'height:' + (${student.height} * 30) + 'px; width:' + (${student.weight} * 1.25) + 'px; border-color:' + ${student.hair_color} + '; 
                          color:' + (${student.gpa} >= '3' ? 'green' : (${student.gpa} > '1' ? 'yellow' : 'red')) + ';'">
-                        <!-- This is where the student names will get added via Thymeleaf -->
+                        <!-- The students names will be filled in here using Thymeleaf -->
                     </div>
                 </div>
             </div> 
@@ -38,7 +40,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="window.location.href = '/students/view';"></button>
                 </div>    
                 <div class="modal-body" id="studentModalBody">
-                    <!-- Student details will be dynamically inserted here with JavaScript -->
+                    <!-- Student details will be dynamically inserted here with my JS file -->
                 </div>
                 <div class="d-flex justify-content-center">
                     <form id="dlt-btn" th:method="DELETE" class="mx-2" style="margin-bottom: 10px;"> 
